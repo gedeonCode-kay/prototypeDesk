@@ -21,13 +21,17 @@
       "target": "nsis"
     },
     "linux": {
-      "target": ["deb", "AppImage"],
+      "target": [
+        "deb",
+        "AppImage"
+      ],
       "category": "Utility"
     }
   },
   "scripts": {
     "dev:vite": "vite",
-    "dev:electron": "cross-env NODE_ENV=development electron .",
+    "start": "electron .",
+    "dev:electron": "wait-on http://localhost:5173 && cross-env NODE_ENV=development electron .",
     "dev": "concurrently \"npm run dev:vite\" \"npm run dev:electron\"",
     "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview",
@@ -53,6 +57,7 @@
     "typescript": "~5.8.0",
     "vite": "npm:rolldown-vite@latest",
     "vite-plugin-vue-devtools": "^8.0.0",
-    "vue-tsc": "^3.0.4"
+    "vue-tsc": "^3.0.4",
+    "wait-on": "^8.0.5"
   }
 }
